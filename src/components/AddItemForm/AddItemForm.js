@@ -4,6 +4,7 @@ import Nav from '../../components/Nav/Nav';
 import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
 
+
 class AddItemForm extends Component {
     constructor(props) {
         super(props);
@@ -29,17 +30,16 @@ class AddItemForm extends Component {
     addNewItem = (event) => {
         event.preventDefault();
         console.log(this.state.itemInputs);
-        axios.post('/api/shelf', this.state.itemInputs).then((response) => {
-            console.log('success posting');
-        }).catch((error) => {
-            console.log('failure')
+        this.props.dispatch({
+            type: 'ADD_ITEM',
+            payload: this.state.itemInputs,
         })
-        
     }
 
     render() {
         return (
             <div>
+                <Nav />
                 <h1>Holla</h1>
                 <form onSubmit={this.addNewItem}>
                     <input placeholder = "Description" type = "text" value = {this.state.description} onChange = {this.handleInput("description")} />
@@ -51,4 +51,8 @@ class AddItemForm extends Component {
     }
 }
 
-export default AddItemForm;
+const mapStateToProps = (state) => ({
+    state
+})
+
+export default connect(mapStateToProps)(AddItemForm);
