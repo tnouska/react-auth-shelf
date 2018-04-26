@@ -6,6 +6,8 @@ import Nav from '../../components/Nav/Nav';
 import { fetchUser } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
+import UserPageMap from './UserPageMap';
+
 const mapStateToProps = state => ({
   user: state.user,
   state
@@ -54,6 +56,7 @@ class ViewItem extends Component {
       <div>
         <Nav />
         { content }
+        <UserPageMap />
       </div>
     );
   }
