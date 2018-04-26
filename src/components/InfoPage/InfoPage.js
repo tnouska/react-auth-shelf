@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import axios from 'axios'
-
 import Nav from '../../components/Nav/Nav';
 import { fetchUser } from '../../redux/actions/userActions';
 
 const mapStateToProps = state => ({
   user: state.user,
+  state
 });
-
-const mapDispatchToProps = {
-  fetchUser,
-};
 
 class GroupItem extends Component {
   componentDidMount() {
-    this.props.fetchUser();
+    this.props.dispatch({
+      type: 'FETCH_USER'
+    });
     this.getCountOfShelfItems();
   }
 
@@ -25,27 +22,24 @@ class GroupItem extends Component {
       this.props.history.push('home');
     }
   }
-getCountOfShelfItems = () => {
-  axios.get('/api/shelf/count').then((response)=>{
-    let countOfShelfItemsByUser = response
-    console.log(response);
-    
-  }).catch((error)=>{
-    console.log('error in getCountOfShelfItems: ', error);
-  });
-  // this.props.dispatch({
-  //   type: 'GET_ALL_BY_USER'
-  // })
-}
+  getCountOfShelfItems = () => {
+    this.props.dispatch({
+      type: 'GROUP_ITEM'
+    })
+    console.log(this.props);
+
+  }
   render() {
     let content = null;
-
+    let groupData = this.props.state.groupItem.map((item)=>{
+      return (<li className='groupItem' key={item.id}>name: {item.username} number of items: {item.count}</li>)
+    })
     if (this.props.user.userName) {
       content = (
         <div>
-          <p>
-            Info Page
-          </p>
+          <ul>
+            {groupData}
+          </ul>
         </div>
       );
     }
@@ -60,4 +54,4 @@ getCountOfShelfItems = () => {
 }
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(GroupItem);
+export default connect(mapStateToProps)(GroupItem);
