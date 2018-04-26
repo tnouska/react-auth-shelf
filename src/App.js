@@ -9,8 +9,8 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import ViewItems from './components/UserPage/UserPage'; //view shelf
-import GroupItems from './components/InfoPage/InfoPage'; //Items from User
+import ViewItem from './components/UserPage/UserPage'; //view shelf
+import GroupItem from './components/InfoPage/InfoPage'; //Items from User
 //Create AddItem page
 
 import './styles/main.css';
@@ -30,12 +30,12 @@ const App = () => (
           component={RegisterPage}
         />
         <Route
-          path="/viewitems"
-          component={ViewItems}
+          path="/viewitem"
+          component={ViewItem}
         />
         <Route
-          path="/groupitems"
-          component={GroupItems}
+          path="/groupitem"
+          component={GroupItem}
         />
         {/* <Route
           path="/additem"

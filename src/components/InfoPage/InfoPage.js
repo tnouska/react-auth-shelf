@@ -12,7 +12,7 @@ const mapDispatchToProps = {
   fetchUser,
 };
 
-class InfoPage extends Component {
+class GroupItem extends Component {
   componentDidMount() {
     this.props.fetchUser();
   }
@@ -46,4 +46,4 @@ class InfoPage extends Component {
 }
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps, mapDispatchToProps)(InfoPage);
+export default connect(mapStateToProps, mapDispatchToProps)(GroupItem);
