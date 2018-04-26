@@ -12,6 +12,7 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import ViewItem from './components/UserPage/UserPage'; //view shelf
 import GroupItem from './components/InfoPage/InfoPage'; //Items from User
 //Create AddItem page
+import AddItemForm from './components/AddItemForm/AddItemForm';
 
 import './styles/main.css';
 
@@ -37,10 +38,10 @@ const App = () => (
           path="/groupitem"
           component={GroupItem}
         />
-        {/* <Route
+        <Route
           path="/additem"
-          component={AddItem}
-        /> */}
+          component={AddItemForm}
+        />
       </Switch>
     </Router>
   </div>
