@@ -6,13 +6,18 @@ const Nav = () => (
     <div>
       <ul>
         <li>
-          <Link to="/user">
-            User Home
+          <Link to="/viewitem">
+            View All Items
           </Link>
         </li>
         <li>
-          <Link to="/info">
-            Info Page
+          <Link to="/additem">
+            Add an Item
+          </Link>
+        </li>
+        <li>
+          <Link to="/groupitem">
+            View Items by Owner
           </Link>
         </li>
       </ul>
