@@ -8,11 +8,15 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
   user: state.user,
+  state
 });
 
-class UserPage extends Component {
+class ViewItem extends Component {
   componentDidMount() {
     this.props.dispatch(fetchUser());
+    this.props.dispatch({
+      type: 'GET_ITEMS'
+    })
   }
 
   componentDidUpdate() {
@@ -56,5 +60,5 @@ class UserPage extends Component {
 }
 
 // this allows us to use <App /> in index.js
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps)(ViewItem);
 
