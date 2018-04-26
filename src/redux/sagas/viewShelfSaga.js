@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* fetchItems(){
@@ -20,7 +20,7 @@ function* fetchItems(){
 }
 
 function* ViewItemSaga() {
-  yield takeLatest('GET_ITEMS', fetchItems);
+  yield takeEvery('GET_ITEMS', fetchItems);
 }
 
 export default ViewItemSaga;
