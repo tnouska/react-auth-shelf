@@ -34,6 +34,7 @@ class AddItemForm extends Component {
         }).catch((error) => {
             console.log('failure')
         })
+        
     }
 
     render() {
