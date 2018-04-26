@@ -32,14 +32,22 @@ class GroupItem extends Component {
   render() {
     let content = null;
     let groupData = this.props.state.groupItem.map((item)=>{
-      return (<li className='groupItem' key={item.id}>name: {item.username} number of items: {item.count}</li>)
+      return (<tr className='groupItem' key={item.username}><td>{item.username}</td><td>{item.count}</td></tr>)
     })
     if (this.props.user.userName) {
       content = (
         <div>
-          <ul>
-            {groupData}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Items on shelf</th>
+              </tr>
+            </thead>
+            <tbody>
+              {groupData}
+            </tbody>
+          </table>
         </div>
       );
     }
