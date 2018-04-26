@@ -60,7 +60,17 @@ router.put('/:id', (req, res) => {
  * they have added to the shelf
  */
 router.get('/count', (req, res) => {
-
+    if (req.isAuthenticated()) {
+        let queryText = `SELECT person.username, count(item) FROM person LEFT JOIN item on person.id = item.person_id GROUP BY person.username, person.id ORDER BY person.id;`;
+        pool.query(queryText).then((result)=>{
+            res.send(result.rows)
+        }).catch((error)=>{
+            console.log('error in shelf.router.get.count: ', error);
+            res.sendStatus(500);
+        })
+    } else{
+        res.sendStatus(403);
+    }
 });
 
 
