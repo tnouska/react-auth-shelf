@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import axios from 'axios'
+
 import Nav from '../../components/Nav/Nav';
 import { fetchUser } from '../../redux/actions/userActions';
 
@@ -15,6 +17,7 @@ const mapDispatchToProps = {
 class GroupItem extends Component {
   componentDidMount() {
     this.props.fetchUser();
+    this.getCountOfShelfItems();
   }
 
   componentDidUpdate() {
@@ -22,7 +25,18 @@ class GroupItem extends Component {
       this.props.history.push('home');
     }
   }
-
+getCountOfShelfItems = () => {
+  axios.get('/api/shelf/count').then((response)=>{
+    let countOfShelfItemsByUser = response
+    console.log(response);
+    
+  }).catch((error)=>{
+    console.log('error in getCountOfShelfItems: ', error);
+  });
+  // this.props.dispatch({
+  //   type: 'GET_ALL_BY_USER'
+  // })
+}
   render() {
     let content = null;
 
