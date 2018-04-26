@@ -9,8 +9,9 @@ import {
 import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
-import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
+import ViewItems from './components/UserPage/UserPage'; //view shelf
+import GroupItems from './components/InfoPage/InfoPage'; //Items from User
+//Create AddItem page
 
 import './styles/main.css';
 
@@ -29,13 +30,17 @@ const App = () => (
           component={RegisterPage}
         />
         <Route
-          path="/user"
-          component={UserPage}
+          path="/viewitems"
+          component={ViewItems}
         />
         <Route
-          path="/info"
-          component={InfoPage}
+          path="/groupitems"
+          component={GroupItems}
         />
+        {/* <Route
+          path="/additem"
+          component={AddItem}
+        /> */}
       </Switch>
     </Router>
   </div>
