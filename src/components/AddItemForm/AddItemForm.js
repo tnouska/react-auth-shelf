@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
-import { fetchUser } from '../../redux/actions/userActions';
+// import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
 
 
