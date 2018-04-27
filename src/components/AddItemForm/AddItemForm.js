@@ -16,6 +16,18 @@ class AddItemForm extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.dispatch({
+            type: 'FETCH_USER'
+        });
+    }
+
+    componentDidUpdate() {
+        if (!this.props.user.isLoading && this.props.user.userName === null) {
+            this.props.history.push('home');
+        }
+    }
+
     handleInput = (propertyName) => {
         return (event) => {          
             this.setState({
@@ -52,6 +64,7 @@ class AddItemForm extends Component {
 }
 
 const mapStateToProps = (state) => ({
+    user: state.user, //this shortens state.user to user (so we can use this.props.user)
     state
 })
 
