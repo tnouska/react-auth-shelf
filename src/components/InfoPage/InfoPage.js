@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav/Nav';
+import { triggerLogout } from '../../redux/actions/loginActions';
 // import { fetchUser } from '../../redux/actions/userActions';
 
 class GroupItem extends Component {
@@ -22,8 +23,13 @@ class GroupItem extends Component {
       type: 'GROUP_ITEM'
     })
     console.log(this.props);
-
   }
+
+  logout = () => {
+    this.props.dispatch(triggerLogout());
+    this.props.history.push('home');
+  }
+
   render() {
     let content = null;
     let groupData = this.props.state.groupItem.map((item)=>{
@@ -49,8 +55,14 @@ class GroupItem extends Component {
 
     return (
       <div>
+        
         <Nav />
         { content }
+        <button
+          onClick={this.logout}
+        >
+          Log Out
+          </button>
       </div>
     );
   }
