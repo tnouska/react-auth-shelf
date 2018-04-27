@@ -3,9 +3,12 @@ import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 // import { fetchUser } from '../../redux/actions/userActions';
 import axios from 'axios';
+import ReactFilestack, { client} from 'filestack-react'
+import filestack from 'filestack-js';
 
 
 class AddItemForm extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -15,6 +18,7 @@ class AddItemForm extends Component {
             }
         }
     }
+
 
     componentDidMount() {
         this.props.dispatch({
@@ -27,7 +31,6 @@ class AddItemForm extends Component {
             this.props.history.push('home');
         }
     }
-
     handleInput = (propertyName) => {
         return (event) => {          
             this.setState({
@@ -48,7 +51,27 @@ class AddItemForm extends Component {
         })
     }
 
+    handleUpload = (result) => {
+        console.log('pic success', result)
+        this.setState({
+            itemInputs: {
+                description: this.state.itemInputs.description,
+                image_url: result.filesUploaded[0].url
+            }
+        })
+        console.log(this.state.itemInputs)
+    }
+
     render() {
+        const client = filestack.init('Abo8DFBkZSpyD4vfMRU4mz', [options]);
+        const apikey = 'Abo8DFBkZSpyD4vfMRU4mz';
+        const options = {
+            accept: 'image/*',
+            maxFiles: 1,
+            storeTo: {
+                location: 's3'
+            }
+        }
         return (
             <div>
                 <Nav />
@@ -58,6 +81,12 @@ class AddItemForm extends Component {
                     <input placeholder = "Image URL" type = "text" value = {this.state.image_url}  onChange = {this.handleInput("image_url")}/>
                     <button type = "submit">Submit</button>
                 </form>
+                <ReactFilestack
+                    apikey={apikey}
+                    buttonText="Add Pic"
+                    buttonClass="classname"
+                    options={options}
+                    onSuccess={this.handleUpload}/>
             </div>
         )
     }
