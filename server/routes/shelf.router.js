@@ -79,7 +79,24 @@ router.delete('/:id', (req, res) => {
  * Update an item if it's something the logged in user added
  */
 router.put('/:id', (req, res) => {
-
+    console.log('user:', req.user);
+    console.log('is authenticated:', req.isAuthenticated());
+    console.log(req.body);
+    if(req.isAuthenticated()) {
+        let queryText = `UPDATE item SET description = $1, image_url = $2 WHERE id = $3 AND person_id = $4;`
+        pool.query(queryText, [req.body.description, req.body.image_url, req.params.id, req.user.id])
+        .then( (result) => {
+            console.log('successful UPDATE', result);
+            res.sendStatus(201);
+        })
+        .catch( (error) => {
+            console.log('error in PUT', error);
+            res.sendStatus(500);
+        })
+    }else {
+        res.sendStatus(403);
+    }
+   
 });
 
 
