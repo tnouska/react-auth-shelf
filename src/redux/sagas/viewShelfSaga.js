@@ -42,7 +42,7 @@ function* editItem(action){
   }
 
   try{
-    yield call(axios., `/api/shelf/${action.payload.id}`, config)
+    yield call(axios.put, `/api/shelf/${action.payload.id}`, config)
     yield put({
       type: 'GET_ITEMS'
     })
