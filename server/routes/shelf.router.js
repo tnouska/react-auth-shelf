@@ -84,7 +84,7 @@ router.put('/:id', (req, res) => {
     console.log(req.body);
     if(req.isAuthenticated()) {
         let queryText = `UPDATE item SET description = $1, image_url = $2 WHERE id = $3 AND person_id = $4;`
-        pool.query(queryText, [req.body.description, req.body.image_url, req.params.id, req.user.id])
+        pool.query(queryText, [req.body.description, req.body.image, req.params.id, req.user.id])
         .then( (result) => {
             console.log('successful UPDATE', result);
             res.sendStatus(201);

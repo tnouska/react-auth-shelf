@@ -31,7 +31,7 @@ class UserPageList extends Component {
   handleSubmit = ()=>{
     this.props.dispatch({
       type: 'EDIT_ITEM',
-      payload: {description: this.state.description, image: this.state.image}
+      payload: {description: this.state.description, image: this.state.image, id: this.props.view.id, person_id: this.props.view.person_id}
     })
     this.setState({
       isEditing: false
