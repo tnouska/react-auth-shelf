@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 console.log('/ item GET viewShelf');
 console.log('is authenticated?', req.isAuthenticated());
 console.log('user', req.user);
-if(req.isAuthenticated()){
+// if(req.isAuthenticated()){
     let queryText = 'SELECT * FROM "item";';
     pool.query(queryText).then((result) => {
         res.send(result.rows);
@@ -18,10 +18,10 @@ if(req.isAuthenticated()){
         console.log(error);
         res.sendStatus(500);
     });
-}
-    else{
-        res.sendStatus(403);
-    }
+// }
+//     else{
+//         res.sendStatus(403);
+//     }
 });
 
 
