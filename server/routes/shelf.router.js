@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 console.log('/ item GET viewShelf');
 console.log('is authenticated?', req.isAuthenticated());
 console.log('user', req.user);
-if(req.isAuthenticated()){
+// if(req.isAuthenticated()){
     let queryText = 'SELECT * FROM "item";';
     pool.query(queryText).then((result) => {
         res.send(result.rows);
@@ -18,10 +18,10 @@ if(req.isAuthenticated()){
         console.log(error);
         res.sendStatus(500);
     });
-}
-    else{
-        res.sendStatus(403);
-    }
+// }
+//     else{
+//         res.sendStatus(403);
+//     }
 });
 
 
@@ -84,7 +84,7 @@ router.put('/:id', (req, res) => {
     console.log(req.body);
     if(req.isAuthenticated()) {
         let queryText = `UPDATE item SET description = $1, image_url = $2 WHERE id = $3 AND person_id = $4;`
-        pool.query(queryText, [req.body.description, req.body.image_url, req.params.id, req.user.id])
+        pool.query(queryText, [req.body.description, req.body.image, req.params.id, req.user.id])
         .then( (result) => {
             console.log('successful UPDATE', result);
             res.sendStatus(201);

@@ -35,10 +35,27 @@ function* deleteItem(action){
     console.log('an error in deleteItem ', error);
   }
 }
+function* editItem(action){
+  const config = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true,
+  }
+
+  try{
+    yield call(axios.put, `/api/shelf/${action.payload.id}`, action.payload, config)
+    yield put({
+      type: 'GET_ITEMS'
+    })
+  }
+  catch(error){
+    console.log('an error in editItem ', error);
+  }
+}
 
 function* ViewItemSaga() {
   yield takeEvery('GET_ITEMS', fetchItems);
   yield takeEvery('DELETE_ITEM', deleteItem);
+  yield takeEvery('EDIT_ITEM', editItem);
 }
 
 export default ViewItemSaga;

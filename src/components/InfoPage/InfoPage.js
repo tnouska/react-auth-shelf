@@ -2,12 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Nav from '../../components/Nav/Nav';
-import { fetchUser } from '../../redux/actions/userActions';
-
-const mapStateToProps = state => ({
-  user: state.user,
-  state
-});
+// import { fetchUser } from '../../redux/actions/userActions';
 
 class GroupItem extends Component {
   componentDidMount() {
@@ -60,6 +55,11 @@ class GroupItem extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  user: state.user,
+  state
+});
 
 // this allows us to use <App /> in index.js
 export default connect(mapStateToProps)(GroupItem);

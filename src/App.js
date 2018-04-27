@@ -13,6 +13,7 @@ import ViewItem from './components/UserPage/UserPage'; //view shelf
 import GroupItem from './components/InfoPage/InfoPage'; //Items from User
 //Create AddItem page
 import AddItemForm from './components/AddItemForm/AddItemForm';
+import PublicList from './components/PublicPage/PublicPage'
 
 import './styles/main.css';
 
@@ -41,6 +42,10 @@ const App = () => (
         <Route
           path="/additem"
           component={AddItemForm}
+        />
+        <Route
+          path="/public"
+          component={PublicList}
         />
       </Switch>
     </Router>

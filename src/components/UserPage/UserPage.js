@@ -15,21 +15,21 @@ const mapStateToProps = state => ({
 
 class ViewItem extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchUser());
+    // this.props.dispatch(fetchUser());
     this.props.dispatch({
       type: 'GET_ITEMS'
     })
   }
 
-  componentDidUpdate() {
-    if (!this.props.user.isLoading && this.props.user.userName === null) {
-      this.props.history.push('home');
-    }
-  }
+  // componentDidUpdate() {
+  //   if (!this.props.user.isLoading && this.props.user.userName === null) {
+  //     this.props.history.push('home');
+  //   }
+  // }
 
   logout = () => {
     this.props.dispatch(triggerLogout());
-    // this.props.history.push('home');
+    this.props.history.push('home');
   }
 
   render() {
