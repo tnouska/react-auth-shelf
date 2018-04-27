@@ -57,7 +57,13 @@ router.delete('/:id', (req, res) => {
         pool.query(queryText, [req.params.id, req.user.id])
         .then( (result) => {
             console.log('successful DELETE', result);
-            res.sendStatus(201);
+            if (result.rowCount===0){
+                res.sendStatus(418);
+            }
+            else{
+                res.sendStatus(201);
+            }
+            
         })
         .catch( (error) => {
             console.log('error in DELETE', error);
