@@ -6,7 +6,7 @@ const PublicNav = () => (
         <div>
             <ul>
                 <li>
-                    <Link to="/viewitem">
+                    <Link to="/public">
                         View All Items
                     </Link>
                 </li>
