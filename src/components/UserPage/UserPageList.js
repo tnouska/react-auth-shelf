@@ -16,6 +16,13 @@ class UserPageList extends Component {
       payload: this.props.view
     })
   }
+  handleClickEdit =()=>{
+    console.log('clicked ', this.props.view);
+    this.props.dispatch({
+      type: 'EDIT_ITEM',
+      payload: this.props.view
+    })
+  }
   render(){
 
     return(
@@ -23,6 +30,7 @@ class UserPageList extends Component {
         <h4>{this.props.view.description}</h4>
           <img src={this.props.view.image_url} />
           <button onClick={this.handleClick}>Delete</button>
+          <buttom onClick={this.handleClickEdit}>Edit</button>
         </div>
     );
   }
