@@ -5,6 +5,7 @@ import Nav from '../../components/Nav/Nav';
 import axios from 'axios';
 import ReactFilestack, { client} from 'filestack-react'
 import filestack from 'filestack-js';
+import { triggerLogout } from '../../redux/actions/loginActions';
 
 
 class AddItemForm extends Component {
@@ -31,6 +32,12 @@ class AddItemForm extends Component {
             this.props.history.push('home');
         }
     }
+
+    logout = () => {
+        this.props.dispatch(triggerLogout());
+        this.props.history.push('home');
+    }
+
     handleInput = (propertyName) => {
         return (event) => {          
             this.setState({
@@ -87,6 +94,11 @@ class AddItemForm extends Component {
                     buttonClass="classname"
                     options={options}
                     onSuccess={this.handleUpload}/>
+                <button
+                    onClick={this.logout}
+                >
+                    Log Out
+          </button>
             </div>
         )
     }
